@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stopwatch.com</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #003371;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        width: 80vw;
+        background-color: rgb(0, 0, 0);
+        padding-top: 200px;
+        padding-bottom: 10%;
+        color: white;
+        text-align: center;
+        box-shadow: 0em 0em 10em rgb(192, 192, 192);
+        border-radius: 2%;
+      }
+      .main h1 {
+        font-size: 2.5rem;
+        word-spacing: 0.5em;
+        margin-bottom: 30px;
+      }
+      .main .continer {
+        padding: 4%;
+      }
+
+      .main .continer #d-row span {
+        font-size: 2.5em;
+      }
+      .main .continer #d-row span {
+        padding: 1rem;
+      }
+      #con {
+        display: flex;
+        flex-direction: row;
+      }
+      .main .continer-buttons {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .main .continer .btn {
+        border: none;
+        padding: 5%;
+        margin: 10%;
+        font-size: 25px;
+        font-weight: 700;
+        background-color: rgb(0, 83, 83);
+        color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 13px rgb(255, 255, 255);
+        transition: 0.5s;
+        cursor: pointer;
+      }
+      .main .continer .btn:hover {
+        background-color: white;
+        color: rgb(0, 83, 83);
+      }
+      #d-block {
+        display: block;
+      }
+      #count {
+        font-size: 2rem;
+      }
+      .text h3,
+      p,
+      #type {
+        margin-top: 5%;
+        line-height: 2em;
+        font-weight: 500;
+        color: white;
+      }
+      .text p {
+        font-size: 1.5rem;
+      }
+      #type {
+        color: white;
+        font-weight: 900;
+        font-size: 1.5rem;
+      }
+      .text h3{
+        margin-top: 5%;
+        line-height: 2em;
+        font-weight: 500;
+        font-size: 2rem;
+        
+      }
+
+      @media (max-width: 750px) {
+        .main {
+          width: 90vw;
+          padding-top: 50px;
+        }
+        .main h1 {
+          font-size: 1.5rem;
+          word-spacing: 0em;
+        }
+        #con {
+          display: flex;
+          flex-direction: column;
+        }
+        #con span {
+          padding: 2%;
+        }
+        #d-row {
+          display: flex;
+        }
+        .main .continer #d-row span {
+          font-size: 1.7em;
+        }
+        .main .continer .btn {
+          border: none;
+          padding: 5%;
+          margin: 8%;
+          font-size: 17px;
+          font-weight: 500;
+        }
+        .text p {
+          font-size: 1rem;
+        }
+        #type {
+          color: rgb(94, 131, 252);
+          font-weight: 900;
+          font-size: 1rem;
+        }
+        .text h3 #type {
+          margin-top: 5%;
+          line-height: 2em;
+          font-weight: 500;
+          color: rgb(204, 179, 179);
+        }
+        .text h3{
+        margin-top: 5%;
+        line-height: 1em;
+        font-weight: 500;
+        font-size: 1rem;
+        
+      }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <div class="main">
+        <h1>WELLCOME TO MY STOPWATCH</h1>
+        <div id="con" class="continer continer-timer">
+          <div id="d-row">
+            <span>Hour :</span>
+            <span id="hour">00</span>
+          </div>
+          <div id="d-row">
+            <span>Minute:</span>
+            <span id="minute">00</span>
+          </div>
+          <div id="d-row">
+            <span>Second:</span>
+            <span id="second">00</span>
+          </div>
+        </div>
+        <div id="d-row">
+          <span id="count">00</span>
+        </div>
+        <div class="continer continer-buttons">
+          <button type="submit" class="btn" id="start" onclick="start()">
+            Start
+          </button>
+          <button type="submit" class="btn" id="stop" onclick="stop()">
+            Stop
+          </button>
+          <button type="submit" class="btn" id="reset" onclick="reset()">
+            Reset
+          </button>
+        </div>
+        <div class="text">
+          <h3>
+            MADE WITH LOVE BY <br />
+            MD.MUSADDIK HOSEN
+          </h3>
+          <p>As a <span id="type">Student</span></p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let second = 0;
+      let minute = 0;
+      let hour = 0;
+      let text = "Programming lover";
+      let text1 = "Study lover";
+      var text2 = "Devoloper lover";
+      var text3 = "Hacking lover";
+      var text4 = "Student";
+      console.log(text);
+
+      let count = 0;
+      let timer = false;
+      function start() {
+        timer = true;
+        stopwatch();
+      }
+      function stop() {
+        timer = false;
+      }
+      function reset() {
+        timer = false;
+        count = 0;
+        document.getElementById("count").innerHTML = count;
+        second = 0;
+        document.getElementById("second").innerHTML = second;
+        minute = 0;
+        document.getElementById("minute").innerHTML = minute;
+        hour = 0;
+        document.getElementById("hour").innerHTML = hour;
+      }
+      function stopwatch() {
+        if (timer == true) {
+          // for(count=0;count<101;count++){
+
+          //     document.getElementById("count").innerHTML = count;
+          //     setTimeout("stopwatch()",10);
+
+          // }
+          count = count + 1;
+          document.getElementById("count").innerHTML = count;
+
+          setTimeout("stopwatch()", 10);
+
+          if (count == 100) {
+            count = 0;
+            second = second + 1;
+            document.getElementById("second").innerHTML = second;
+
+            if (second == 59) {
+              second = 0;
+              minute += 1;
+              document.getElementById("minute").innerHTML = minute;
+
+              // // --------test-------
+
+              // -------end...---
+
+              if (minute == 59) {
+                minute = 0;
+                hour = hour + 1;
+                document.getElementById("hour").innerHTML = hour;
+              }
+            } else if (second == 5) {
+              document.getElementById("type").innerHTML = text;
+            } else if (second == 10) {
+              document.getElementById("type").innerHTML = text1;
+            } else if (second == 15) {
+              document.getElementById("type").innerHTML = text2;
+            } else if (second == 20) {
+              document.getElementById("type").innerHTML = text3;
+            } else if (second == 25) {
+              document.getElementById("type").innerHTML = text;
+            } else if (second == 30) {
+              document.getElementById("type").innerHTML = text2;
+            } else if (second == 35) {
+              document.getElementById("type").innerHTML = text3;
+            } else if (second == 40) {
+              document.getElementById("type").innerHTML = text;
+            } else if (second == 45) {
+              document.getElementById("type").innerHTML = text1;
+            } else if (second == 50) {
+              document.getElementById("type").innerHTML = text2;
+            } else if (second == 55) {
+              document.getElementById("type").innerHTML = text3;
+            } else if (second == 0) {
+              document.getElementById("type").innerHTML = text4;
+
+            }
+
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
